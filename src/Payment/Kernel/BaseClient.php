@@ -56,7 +56,7 @@ class BaseClient
      * Make a API request.
      *
      * @param string $method
-     * @param bool   $returnResponse
+     * @param bool $returnResponse
      *
      * @return \Psr\Http\Message\ResponseInterface|\EasyWeChat\Kernel\Support\Collection|array|object|string
      *
@@ -87,7 +87,11 @@ class BaseClient
 
         $this->pushMiddleware($this->logMiddleware(), 'log');
 
+        $this->app->events->dispatch(new \EasyWeChat\Kernel\Events\HttpRequestCreated($options));
+
         $response = $this->performRequest($endpoint, $method, $options);
+
+        $this->app->events->dispatch(new \EasyWeChat\Kernel\Events\HttpResponseCreated($response));
 
         return $returnResponse ? $response : $this->castResponseToType($response, $this->app->config->get('response_type'));
     }
