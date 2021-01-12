@@ -1,5 +1,5 @@
 {
-  "name": "lmh/easywechat",
+  "name": "overtrue/wechat",
   "description": "微信SDK",
   "keywords": [
     "easywechat",
@@ -31,7 +31,7 @@
     "symfony/event-dispatcher": "^4.3 || ^5.0",
     "symfony/http-foundation": "^2.7 || ^3.0 || ^4.0 || ^5.0",
     "symfony/psr-http-message-bridge": "^0.3 || ^1.0 || ^2.0",
-    "illuminate/support": "^5.8"
+    "illuminate/support": "^5.8",
 
   },
   "require-dev": {
