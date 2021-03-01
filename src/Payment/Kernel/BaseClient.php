@@ -103,8 +103,11 @@ class BaseClient
      */
     protected function logMiddleware()
     {
+        $log = $this->app['config']->get('log');
+        if (isset($log['logMiddleware'])) {
+            return $log['logMiddleware'];
+        }
         $formatter = new MessageFormatter($this->app['config']['http.log_template'] ?? MessageFormatter::DEBUG);
-
         return Middleware::log($this->app['logger'], $formatter);
     }
 
