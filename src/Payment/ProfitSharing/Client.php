@@ -209,6 +209,29 @@ class Client extends BaseClient
     }
 
     /**
+     * 查询订单待分账金额
+     * @param string $transactionId
+     * @return array|\EasyWeChat\Kernel\Support\Collection|object|\Psr\Http\Message\ResponseInterface|string
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidArgumentException
+     * @throws \EasyWeChat\Kernel\Exceptions\InvalidConfigException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @author lmh
+     */
+    public function amount(string $transactionId)
+    {
+        $params = [
+            'transaction_id' => $transactionId,
+            'mch_id' => $this->app['config']->mch_id,
+            'sub_mch_id' => null,
+            'sub_appid' => null,
+        ];
+
+        return $this->request(
+            'pay/profitsharingorderamountquery',
+            $params
+        );
+    }
+    /**
      * Profit sharing return.
      * 分账回退.
      *
